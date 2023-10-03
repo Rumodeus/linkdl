@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dl</title>
+</head>
+<body>
+    <h1>yt to mp3/mp4 with no bullshit</h1>
+    <form action="/download" method="GET">
+        <label for="videoLink">Video Link:</label>
+        <input type="text" id="videoLink" name="link" placeholder="Enter YouTube video link" required>
+        <br>
+        <label for="formatSwitch">Select Format:</label>
+        <select id="formatSwitch" name="format">
+            <option value="mp4">MP4</option>
+            <option value="mp3">MP3</option>
+        </select>
+        <br>
+        <input type="submit" value="Download">
+    </form>
+</body>
+</html>
