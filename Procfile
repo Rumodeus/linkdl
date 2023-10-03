@@ -1,2 +1,2 @@
-web: gunicorn grab4:app
+web: python grab4.py
 
