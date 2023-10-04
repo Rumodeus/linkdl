@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rikka's Youtube Downloader</title>
+    <title>Rikka's Video Downloader</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -29,14 +29,15 @@
         }
         input[type="text"],
         select {
-            width: 100%;
+            width: 50%; /* Set the width to 50% to match the other elements */
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #666; /* Slightly lighter border */
-            background-color: #333; /* Darker background for the input fields */
-            color: #ddd; /* Light grey text color */
+            border: 1px solid #666;
+            background-color: #333;
+            color: #ddd;
             border-radius: 3px;
         }
+        
         input[type="submit"] {
             background-color: #8d60a0; /* Lilac button color */
             color: #ddd; /* Light grey button text color */
@@ -74,7 +75,7 @@
     <p>thanks to my homeboy meharab for helping me</p>
     <form action="/download" method="GET">
         <label for="videoLink">Video Link:</label>
-        <input type="text" id="videoLink" name="link" placeholder="Enter YouTube video link" required>
+        <input type="text" id="videoLink" name="link" placeholder="Enter video link" required></input>
         <br>
         <label for="formatSwitch">Select Format:</label>
         <select id="formatSwitch" name="format">
@@ -82,7 +83,7 @@
             <option value="mp3">MP3</option>
         </select>
         <br>
-        <input type="submit" value="Download">
+        <input type="submit" value="Download"></button>
     </form>
     <button class="hide-button" id="toggleImage">Toggle Image</button>
     <div class="image-placeholder" id="imageContainer">
