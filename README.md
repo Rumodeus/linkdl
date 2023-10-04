@@ -5,5 +5,5 @@ This is setup for deployment to heroku
 
 link to working ver: https://linkdl.reapreturns.repl.co
 
-![image](https://github.com/Rumodeus/linkdl/assets/91802844/be2c0e4d-f35c-435c-af6b-bf528dc4bb9a)
+![image](https://github.com/Rumodeus/linkdl/assets/91802844/031949b8-e2ee-46a2-8f13-884bc42bbcca)
 
