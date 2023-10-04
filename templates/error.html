@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rikka's Video Downloader</title>
+    <title>Rikka's Video Downloader - Error</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,7 +37,7 @@
             color: #ddd;
             border-radius: 3px;
         }
-        
+
         input[type="submit"] {
             background-color: #8d60a0; /* Lilac button color */
             color: #ddd; /* Light grey button text color */
@@ -53,10 +53,11 @@
             margin-top: 30px;
             border-radius: 5px;
             overflow: hidden; /* Hide any potential overflow */
+            border: 2px solid #8d60a0; /* Lilac border */
         }
         .image-placeholder img {
             max-width: 100%; /* Ensure the image fits within the container */
-            display: none; /* Hide the image by default */
+            display: block; /* Display the image */
             margin: 0 auto; /* Center the image horizontally */
         }
         .hide-button {
@@ -66,40 +67,12 @@
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 3px;
-
         }
     </style>
 </head>
 <body>
-    <h1>Rikka's Youtube Downloader</h1>
-    <p>thanks to my homeboy meharab for helping me</p>
-    <form action="/download" method="GET">
-        <label for="videoLink">Video Link:</label>
-        <input type="text" id="videoLink" name="link" placeholder="Enter video link" required></input>
-        <br>
-        <label for="formatSwitch">Select Format:</label>
-        <select id="formatSwitch" name="format">
-            <option value="mp4">MP4</option>
-            <option value="mp3">MP3</option>
-        </select>
-        <br>
-        <input type="submit" value="Download"></button>
-    </form>
-    <button class="hide-button" id="toggleImage">Toggle Image</button>
-    <div class="image-placeholder" id="imageContainer">
-        <img src="https://files.catbox.moe/ahrytx.png" alt="Image Placeholder">
-    </div>
-
-    <script>
-        document.getElementById("toggleImage").addEventListener("click", function() {
-            var imageContainer = document.getElementById("imageContainer");
-            var image = imageContainer.querySelector("img");
-            if (image.style.display === "none" || image.style.display === "") {
-                image.style.display = "block";
-            } else {
-                image.style.display = "none";
-            }
-        });
-    </script>
+    <h1>Idiot</h1>
+    <p>Error Code: {{ error_code }}</p>
+    <img src="{{ error_image_url }}" alt="Image Placeholder">
 </body>
 </html>
