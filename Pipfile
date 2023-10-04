@@ -8,7 +8,7 @@ gunicorn = "*"
 flask = "*"
 pytube = "*"
 
-gunicorn = "
+
 [dev-packages]
 
 [requires]
