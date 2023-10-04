@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>dl</title>
+    <title>Rikka's Youtube Downloader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', Arial, sans-serif; /* Nunito font and fallback to Arial if needed */
+            background-color: #ccc; /* Light grey background color */
+            color: #333; /* Dark text color */
+            text-align: center;
+        }
+        h1 {
+            color: #8d60a0; /* Lilac heading color */
+        }
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #444; /* Dark grey background for the form */
+            border: 1px solid #8d60a0; /* Lilac border */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ddd; /* Light grey label text */
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #666; /* Slightly lighter border */
+            background-color: #333; /* Darker background for the input fields */
+            color: #ddd; /* Light grey text color */
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #8d60a0; /* Lilac button color */
+            color: #ddd; /* Light grey button text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        input[type="submit"]:hover {
+            background-color: #6f4d7d; /* Slightly darker on hover */
+        }
+        .image-placeholder {
+            margin-top: 30px;
+            border-radius: 5px;
+            overflow: hidden; /* Hide any potential overflow */
+        }
+        .image-placeholder img {
+            max-width: 100%; /* Ensure the image fits within the container */
+            display: none; /* Hide the image by default */
+            margin: 0 auto; /* Center the image horizontally */
+        }
+        .hide-button {
+            background-color: #8d60a0; /* Lilac button color */
+            color: #ddd; /* Light grey button text color */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+
+        }
+    </style>
 </head>
 <body>
-    <h1>yt to mp3/mp4 with no bullshit</h1>
+    <h1>Rikka's Youtube Downloader</h1>
     <form action="/download" method="GET">
         <label for="videoLink">Video Link:</label>
         <input type="text" id="videoLink" name="link" placeholder="Enter YouTube video link" required>
@@ -17,5 +83,22 @@
         <br>
         <input type="submit" value="Download">
     </form>
+    <button class="hide-button" id="toggleImage">Toggle Image</button>
+    <div class="image-placeholder" id="imageContainer">
+        <!-- You can replace this placeholder with your actual image -->
+        <img src="https://files.catbox.moe/ahrytx.png" alt="Image Placeholder">
+    </div>
+
+    <script>
+        document.getElementById("toggleImage").addEventListener("click", function() {
+            var imageContainer = document.getElementById("imageContainer");
+            var image = imageContainer.querySelector("img");
+            if (image.style.display === "none" || image.style.display === "") {
+                image.style.display = "block";
+            } else {
+                image.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>

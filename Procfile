@@ -1,1 +1,1 @@
-web: gunicorn grab4:app
+web: gunicorn -c gunicorn_config.py grab4:app
