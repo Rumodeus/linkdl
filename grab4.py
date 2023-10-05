@@ -63,8 +63,8 @@ def download_file():
             return Response(generate(), content_type=mimetype, headers={"Content-Disposition": f"attachment; filename={filename}"})
         except Exception as e:
             error_code = str(e)
-            if error_code == "500":
-                error_code == "500 (you probably entered an invalid link)"
+            if "regex_search" in str(e):
+                error_code = "500 (you probably entered an invalid link)"  # Fix the assignment operator here
             error_image_url = "https://files.catbox.moe/eq311s.png"
             return render_template('error.html', error_code=error_code, error_image_url=error_image_url)
 
