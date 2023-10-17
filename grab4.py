@@ -4,7 +4,8 @@ import requests
 from tqdm import tqdm
 from io import BytesIO
 import secrets
-import moviepy.editor as mp
+import re
+
 
 app = Flask(__name__)
 
@@ -21,12 +22,15 @@ def download_video_with_progress(url, format_choice):
     download_progress = 0  # Set download progress to 0 at the start
 
     yt = YouTube(url)
-    
+
+    # Sanitize the video title to remove invalid characters for file names
+    video_title = re.sub(r'[\/:*?"<>|]', '', yt.title)
+
     if format_choice == 'mp4':
         stream = yt.streams.get_highest_resolution()
         total_bytes = stream.filesize  # Get the total file size in bytes
         video_data = BytesIO()
-        
+
         response = requests.get(stream.url, stream=True)
         with tqdm(total=total_bytes, unit='B', unit_scale=True) as pbar:
             for chunk in response.iter_content(chunk_size=1024):
@@ -34,29 +38,27 @@ def download_video_with_progress(url, format_choice):
                     video_data.write(chunk)
                     pbar.update(len(chunk))
                     download_progress = (video_data.tell() / total_bytes) * 100  # Update download progress
-        
+
         video_data.seek(0)
-        return video_data, f'{yt.title}.mp4', 'video/mp4', total_bytes
-    
-    elif format_choice == 'mp3':
-        stream = yt.streams.filter(only_audio=True).first()
-        total_bytes = stream.filesize
+        return video_data, f'{video_title}.mp4', 'video/mp4', total_bytes
+
+    if format_choice == 'mp3':
+        audio_stream = yt.streams.get_audio_only()
+        total_bytes = audio_stream.filesize
         audio_data = BytesIO()
-        
-        response = requests.get(stream.url, stream=True)
+
+        response = requests.get(audio_stream.url, stream=True)
         with tqdm(total=total_bytes, unit='B', unit_scale=True) as pbar:
             for chunk in response.iter_content(chunk_size=1024):
                 if chunk:
                     audio_data.write(chunk)
                     pbar.update(len(chunk))
                     download_progress = (audio_data.tell() / total_bytes) * 100
-        
+
         audio_data.seek(0)
-        
-        # Convert the downloaded audio (in MP4 format) to MP3
-        audio_file_name = f'{yt.title}.mp3'
-        mp.AudioFileClip(audio_data).write_audiofile(audio_file_name, codec='mp3')
-        return audio_file_name, 'audio/mp3', total_bytes
+        return audio_data, f'{video_title}.mp3', 'video/mp3', total_bytes
+
+
 
 @app.route('/')
 def index():

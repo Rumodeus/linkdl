@@ -1,6 +1,7 @@
 # linkdl
 
-## CURRENTLY PARTIALLY BROKEN
+## CURRENTLY PARTIALLY WORKING
+MP3 downloads are significantly slower than MP4s, I'm currently looking into it
 
 A website to download mp4/mp3s from links (currently only supports youtube :/)
 
