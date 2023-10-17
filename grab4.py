@@ -4,6 +4,7 @@ import requests
 from tqdm import tqdm
 from io import BytesIO
 import secrets
+import moviepy.editor as mp
 
 app = Flask(__name__)
 
@@ -36,7 +37,26 @@ def download_video_with_progress(url, format_choice):
         
         video_data.seek(0)
         return video_data, f'{yt.title}.mp4', 'video/mp4', total_bytes
-
+    
+    elif format_choice == 'mp3':
+        stream = yt.streams.filter(only_audio=True).first()
+        total_bytes = stream.filesize
+        audio_data = BytesIO()
+        
+        response = requests.get(stream.url, stream=True)
+        with tqdm(total=total_bytes, unit='B', unit_scale=True) as pbar:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk:
+                    audio_data.write(chunk)
+                    pbar.update(len(chunk))
+                    download_progress = (audio_data.tell() / total_bytes) * 100
+        
+        audio_data.seek(0)
+        
+        # Convert the downloaded audio (in MP4 format) to MP3
+        audio_file_name = f'{yt.title}.mp3'
+        mp.AudioFileClip(audio_data).write_audiofile(audio_file_name, codec='mp3')
+        return audio_file_name, 'audio/mp3', total_bytes
 
 @app.route('/')
 def index():
